@@ -6,6 +6,7 @@ const AddTodo = ({ setDefaultList }) => {
     description: "",
     date: "never",
     completed: false,
+    id: `td${Math.random() * 50}`,
   });
 
   const handleNewTodo = (e) => {
