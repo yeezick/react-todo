@@ -8,27 +8,6 @@ import { useState } from "react";
  * - a date of creation
  */
 
-const todoList = [
-  {
-    title: "title",
-    description: "description",
-    date: "date",
-    completed: false,
-  },
-  {
-    title: "title",
-    description: "description",
-    date: "date",
-    completed: true,
-  },
-  {
-    title: "title",
-    description: "description",
-    date: "date",
-    completed: false,
-  },
-];
-
 const TodoItem = ({ title, description, date, completed, idx }) => {
   const [isCompleted, setIsCompleted] = useState(false);
   return (
@@ -39,7 +18,7 @@ const TodoItem = ({ title, description, date, completed, idx }) => {
       <input
         type="checkbox"
         checked={isCompleted ? true : false}
-        onClick={() => setIsCompleted((prev) => !prev)}
+        onChange={() => setIsCompleted((prev) => !prev)}
       />
     </div>
   );

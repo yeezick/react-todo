@@ -9,21 +9,21 @@ import Navbar from "./layout/navbar/Navbar";
 
 const defaultList = [
   {
-    title: "title",
-    description: "description",
-    date: "date",
+    title: "labels",
+    description: "filtering by labels would be a cool post mvp",
+    date: "12/20/21",
     completed: false,
   },
   {
-    title: "title",
-    description: "description",
-    date: "date",
-    completed: false,
+    title: "chores",
+    description: "take out the trash",
+    date: "every day? pmvp?",
+    completed: true,
   },
   {
-    title: "title",
-    description: "description",
-    date: "date",
+    title: "coding",
+    description: "git better",
+    date: "today",
     completed: false,
   },
 ];
