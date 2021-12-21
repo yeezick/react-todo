@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import TodoItemWrapper from "../components/todo/Todo";
+import Todo from "../components/todo/Todo";
 
 const Completed = ({ todoList }) => {
   const [completedList, setCompletedList] = useState(null);
@@ -12,9 +12,7 @@ const Completed = ({ todoList }) => {
     // filterTodoList();
   }, [todoList]);
 
-  return (
-    <div>{completedList && <TodoItemWrapper todoList={completedList} />}</div>
-  );
+  return <div>{completedList && <Todo todoList={completedList} />}</div>;
 };
 
 export default Completed;

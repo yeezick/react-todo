@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import AddTodo from "./AddTodo";
+
 /** this component is responsible for the wrapping todo component as well as the structure of each todo item
  * these todos should have:
  * - a title
@@ -24,7 +26,16 @@ const TodoItem = ({ title, description, date, completed, idx }) => {
   );
 };
 
-const TodoItemWrapper = ({ todoList }) => {
+const Todo = ({ todoList }) => {
+  return (
+    <>
+      <TodoList todoList={todoList} />
+      <AddTodo />
+    </>
+  );
+};
+
+const TodoList = ({ todoList }) => {
   return (
     <>
       {todoList.map(({ title, description, date, completed }, idx) => (
@@ -40,4 +51,4 @@ const TodoItemWrapper = ({ todoList }) => {
     </>
   );
 };
-export default TodoItemWrapper;
+export default Todo;

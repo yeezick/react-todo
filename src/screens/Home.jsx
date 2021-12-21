@@ -1,9 +1,9 @@
-import TodoItemWrapper from "../components/todo/Todo";
+import Todo from "../components/todo/Todo";
 
 const Home = ({ todoList }) => {
   return (
     <div>
-      <TodoItemWrapper todoList={todoList} />
+      <Todo todoList={todoList} />
     </div>
   );
 };
