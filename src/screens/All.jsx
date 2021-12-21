@@ -1,6 +1,6 @@
 import Todo from "../components/todo/Todo";
 
-const Home = ({ defaultList, setTodoList }) => {
+const All = ({ defaultList, setTodoList }) => {
   return (
     <div>
       <Todo defaultList={defaultList} setTodoList={setTodoList} />
@@ -8,4 +8,4 @@ const Home = ({ defaultList, setTodoList }) => {
   );
 };
 
-export default Home;
+export default All;

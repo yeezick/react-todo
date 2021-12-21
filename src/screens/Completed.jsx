@@ -1,21 +1,21 @@
 import { useEffect, useState } from "react";
 import Todo from "../components/todo/Todo";
 
-const Completed = ({ todoList, setTodoList }) => {
+const Completed = ({ defaultList, setTodoList }) => {
   const [completedList, setCompletedList] = useState(null);
 
   useEffect(() => {
     // const filterTodoList = () => {
-    const filteredList = todoList.filter((item) => item.completed === true);
+    const filteredList = defaultList.filter((item) => item.completed === true);
     setCompletedList(filteredList);
     // };
     // filterTodoList();
-  }, [todoList]);
-
+  }, [defaultList]);
+  console.log("completed", completedList);
   return (
     <div>
       {completedList && (
-        <Todo todoList={completedList} setTodoList={setTodoList} />
+        <Todo completed defaultList={completedList} setTodoList={setTodoList} />
       )}
     </div>
   );

@@ -6,41 +6,58 @@ import Home from "./screens/Home";
 // utils
 import "./App.css";
 import Navbar from "./layout/navbar/Navbar";
+import All from "./screens/All";
 
-const defaultList = [
+const dummyList = [
   {
-    title: "labels",
-    description: "filtering by labels would be a cool post mvp",
-    date: "12/20/21",
     completed: false,
+    date: "12/20/21",
+    description: "filtering by labels would be a cool post mvp",
+    id: Math.random() * 50,
+    title: "labels",
   },
   {
-    title: "chores",
-    description: "take out the trash",
-    date: "every day? pmvp?",
     completed: true,
+    date: "every day? pmvp?",
+    description: "take out the trash",
+    id: Math.random() * 50,
+    title: "chores",
   },
   {
-    title: "coding",
+    completed: false,
     description: "git better",
     date: "today",
+    id: Math.random() * 50,
+    title: "coding",
+  },
+  {
     completed: false,
+    date: "now mf",
+    description: "finishTodo",
+    id: Math.random() * 50,
+    title: "addTodo",
   },
 ];
 
 function App() {
-  const [todoList, setTodoList] = useState(defaultList);
+  const [defaultList, setTodoList] = useState(dummyList);
   return (
     <div className="App">
       <Navbar />
       <Routes>
         <Route
           path="/"
-          element={<Home todoList={todoList} setTodoList={setTodoList} />}
+          element={<Home defaultList={defaultList} setTodoList={setTodoList} />}
+        />
+        <Route
+          path="/all"
+          element={<All defaultList={defaultList} setTodoList={setTodoList} />}
         />
         <Route
           path="/completed"
-          element={<Completed todoList={todoList} setTodoList={setTodoList} />}
+          element={
+            <Completed defaultList={defaultList} setTodoList={setTodoList} />
+          }
         />
       </Routes>
     </div>
