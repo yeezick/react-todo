@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import AddTodo from "./AddTodo";
 
@@ -26,16 +26,20 @@ const TodoItem = ({ title, description, date, completed, idx }) => {
   );
 };
 
-const Todo = ({ todoList }) => {
+const Todo = ({ todoList, setTodoList }) => {
   return (
     <>
       <TodoList todoList={todoList} />
-      <AddTodo />
+      <AddTodo setTodoList={setTodoList} />
     </>
   );
 };
 
 const TodoList = ({ todoList }) => {
+  useEffect(() => {
+    console.log("rerendering todoList");
+  }, [todoList]);
+
   return (
     <>
       {todoList.map(({ title, description, date, completed }, idx) => (

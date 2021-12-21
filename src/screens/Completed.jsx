@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Todo from "../components/todo/Todo";
 
-const Completed = ({ todoList }) => {
+const Completed = ({ todoList, setTodoList }) => {
   const [completedList, setCompletedList] = useState(null);
 
   useEffect(() => {
@@ -12,7 +12,13 @@ const Completed = ({ todoList }) => {
     // filterTodoList();
   }, [todoList]);
 
-  return <div>{completedList && <Todo todoList={completedList} />}</div>;
+  return (
+    <div>
+      {completedList && (
+        <Todo todoList={completedList} setTodoList={setTodoList} />
+      )}
+    </div>
+  );
 };
 
 export default Completed;
