@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const AddTodo = ({ setTodoList }) => {
+const AddTodo = ({ setDefaultList }) => {
   const [newTodo, setNewTodo] = useState({
     title: "finish AddTodo",
     description: "",
@@ -10,7 +10,7 @@ const AddTodo = ({ setTodoList }) => {
 
   const handleNewTodo = (e) => {
     e.preventDefault();
-    setTodoList((prevState) => {
+    setDefaultList((prevState) => {
       return [...prevState, newTodo];
     });
     setNewTodo((prevState) => {

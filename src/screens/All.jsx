@@ -1,9 +1,9 @@
 import Todo from "../components/todo/Todo";
 
-const All = ({ defaultList, setTodoList }) => {
+const All = ({ defaultList, setDefaultList }) => {
   return (
     <div>
-      <Todo defaultList={defaultList} setTodoList={setTodoList} />
+      <Todo defaultList={defaultList} setDefaultList={setDefaultList} />
     </div>
   );
 };

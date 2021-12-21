@@ -16,7 +16,7 @@ const TodoItem = ({
   date,
   completed,
   id,
-  setTodoList,
+  setDefaultList,
   defaultList,
 }) => {
   const [singleTodo, setSingleTodo] = useState({
@@ -30,7 +30,7 @@ const TodoItem = ({
   const handleCompletion = (e) => {
     const { checked } = e.target;
     const fetchAllOtherTodos = defaultList.filter((item) => item.id !== id);
-    setTodoList(() => {
+    setDefaultList(() => {
       console.log("Current updating:", [
         ...fetchAllOtherTodos,
         { ...singleTodo, completed: checked },
@@ -56,15 +56,15 @@ const TodoItem = ({
   );
 };
 
-const Todo = ({ defaultList, setTodoList, completed }) => {
+const Todo = ({ defaultList, setDefaultList, completed }) => {
   return (
     <>
       <TodoList
         defaultList={defaultList}
-        setTodoList={setTodoList}
+        setDefaultList={setDefaultList}
         completed={completed}
       />
-      <AddTodo setTodoList={setTodoList} />
+      <AddTodo setDefaultList={setDefaultList} />
     </>
   );
 };
@@ -76,7 +76,7 @@ const Todo = ({ defaultList, setTodoList, completed }) => {
 // start by renaming the parent list to defaultList
 // then use `selectedList` in this component to choose the appropriate list
 // how would i handle the user creating their own lists?
-const TodoList = ({ defaultList, setTodoList, completed }) => {
+const TodoList = ({ defaultList, setDefaultList, completed }) => {
   const [list, setList] = useState([]);
 
   useEffect(() => {
@@ -100,7 +100,7 @@ const TodoList = ({ defaultList, setTodoList, completed }) => {
           completed={completed}
           key={`todo-${idx}`}
           id={id}
-          setTodoList={setTodoList}
+          setDefaultList={setDefaultList}
           defaultList={defaultList}
         />
       ))}

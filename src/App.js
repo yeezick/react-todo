@@ -40,23 +40,30 @@ const dummyList = [
 ];
 
 function App() {
-  const [defaultList, setTodoList] = useState(dummyList);
+  const [defaultList, setDefaultList] = useState(dummyList);
   return (
     <div className="App">
       <Navbar />
       <Routes>
         <Route
           path="/"
-          element={<Home defaultList={defaultList} setTodoList={setTodoList} />}
+          element={
+            <Home defaultList={defaultList} setDefaultList={setDefaultList} />
+          }
         />
         <Route
           path="/all"
-          element={<All defaultList={defaultList} setTodoList={setTodoList} />}
+          element={
+            <All defaultList={defaultList} setDefaultList={setDefaultList} />
+          }
         />
         <Route
           path="/completed"
           element={
-            <Completed defaultList={defaultList} setTodoList={setTodoList} />
+            <Completed
+              defaultList={defaultList}
+              setDefaultList={setDefaultList}
+            />
           }
         />
       </Routes>
