@@ -3,7 +3,11 @@ import Todo from "../components/todo/Todo";
 const All = ({ defaultList, setDefaultList }) => {
   return (
     <div>
-      <Todo defaultList={defaultList} setDefaultList={setDefaultList} />
+      <Todo
+        name="all"
+        defaultList={defaultList}
+        setDefaultList={setDefaultList}
+      />
     </div>
   );
 };

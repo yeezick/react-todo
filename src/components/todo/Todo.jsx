@@ -1,45 +1,20 @@
 //! todoItem is rendering twice! look into why this is happening
 import { useState, useEffect } from "react";
-
 import AddTodo from "./AddTodo";
-/** this component is responsible for the wrapping todo component as well as the structure of each todo item
- * these todos should have:
- * - a title
- * - a description
- * - whether they are done or not done
- * - a date of creation
- */
 
-const TodoItem = ({
-  title,
-  description,
-  date,
-  completed,
-  id,
-  setDefaultList,
-  defaultList,
-}) => {
-  const [singleTodo, setSingleTodo] = useState({
-    completed,
-    date,
-    description,
-    id,
-    title,
-  });
+const TodoItem = ({ item, defaultList, setDefaultList }) => {
+  const [currentTodo, setCurrentTodo] = useState({});
+  const { date, description, id, title } = item;
+  useEffect(() => {
+    const findTodo = defaultList.filter((item) => item.id === id);
+    setCurrentTodo(...findTodo);
+  }, [defaultList, item]); // why did adding item to this dependency solve so many bugs?
 
   const handleCompletion = (e) => {
     const { checked } = e.target;
-    const fetchAllOtherTodos = defaultList.filter((item) => item.id !== id);
-    setDefaultList(() => {
-      console.log("Current updating:", [
-        ...fetchAllOtherTodos,
-        { ...singleTodo, completed: checked },
-      ]);
-      return [...fetchAllOtherTodos, { ...singleTodo, completed: checked }];
-    });
-    setSingleTodo((prevState) => {
-      return { ...prevState, completed: checked };
-    });
+    const allTodos = defaultList.filter((item) => item.id !== id);
+    const updatedTodo = { ...currentTodo, completed: checked };
+    setDefaultList([...allTodos, updatedTodo]);
   };
 
   return (
@@ -49,20 +24,20 @@ const TodoItem = ({
       <p className="todo_date">{date}</p>
       <input
         type="checkbox"
-        checked={singleTodo.completed ? true : false}
+        checked={currentTodo?.completed ? true : false}
         onChange={(e) => handleCompletion(e)}
       />
     </div>
   );
 };
 
-const Todo = ({ defaultList, setDefaultList, completed }) => {
+const Todo = ({ defaultList, setDefaultList, name }) => {
   return (
     <>
       <TodoList
         defaultList={defaultList}
         setDefaultList={setDefaultList}
-        completed={completed}
+        name={name}
       />
       <AddTodo setDefaultList={setDefaultList} />
     </>
@@ -76,30 +51,36 @@ const Todo = ({ defaultList, setDefaultList, completed }) => {
 // start by renaming the parent list to defaultList
 // then use `selectedList` in this component to choose the appropriate list
 // how would i handle the user creating their own lists?
-const TodoList = ({ defaultList, setDefaultList, completed }) => {
-  const [list, setList] = useState([]);
+const TodoList = ({ defaultList, setDefaultList, name }) => {
+  const [currentList, setCurrentList] = useState([]);
 
   useEffect(() => {
-    if (completed) {
-      setList(defaultList);
-    } else {
-      const incompleteItems = defaultList.filter(
-        (item) => item.completed === false
-      );
-      setList(incompleteItems);
+    switch (name) {
+      case "completed":
+        const completedList = defaultList.filter(
+          (item) => item.completed === true
+        );
+        setCurrentList(completedList);
+        break;
+      case "incomplete":
+        const incompleteItems = defaultList.filter(
+          (item) => item.completed === false
+        );
+        setCurrentList(incompleteItems);
+        break;
+      default:
+      case "all":
+        setCurrentList(defaultList);
+        break;
     }
-  }, [defaultList]);
-  console.log("list", completed);
+  }, [defaultList, name]);
   return (
     <>
-      {list.map(({ title, description, date, completed, id }, idx) => (
+      {currentList.map((item, idx) => (
         <TodoItem
-          title={title}
-          description={description}
-          date={date}
-          completed={completed}
           key={`todo-${idx}`}
-          id={id}
+          currentList={currentList}
+          item={item}
           setDefaultList={setDefaultList}
           defaultList={defaultList}
         />
