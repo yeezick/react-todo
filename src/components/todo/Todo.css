@@ -1,0 +1,28 @@
+.todo_item {
+  background-color: #0a155a;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  color: white;
+  display: grid;
+  grid-template-areas:
+    ". title title"
+    "checkbox desc desc"
+    ". labels date";
+  max-width: 70%;
+  padding: 0.5rem 1rem;
+  margin: 1rem auto;
+}
+
+.todo_item_title {
+  grid-area: title;
+}
+.todo_item_desc {
+  grid-area: desc;
+}
+.todo_item_date {
+  grid-area: date;
+}
+.todo_item_checkbox {
+  grid-area: checkbox;
+  margin: auto;
+}

@@ -2,6 +2,8 @@
 import { useState, useEffect } from "react";
 import AddTodo from "./AddTodo";
 
+import "./Todo.css";
+
 const TodoItem = ({ item, defaultList, setDefaultList }) => {
   const [currentTodo, setCurrentTodo] = useState({});
   const { date, description, id, title } = item;
@@ -18,11 +20,12 @@ const TodoItem = ({ item, defaultList, setDefaultList }) => {
   };
 
   return (
-    <div style={{ border: " 1px solid red", maxWidth: "30%" }}>
-      <p className="todo_title">{title}</p>
-      <p className="todo_desc">{description}</p>
-      <p className="todo_date">{date}</p>
+    <div className="todo_item">
+      <p className="todo_item_title">{title}</p>
+      <p className="todo_item_desc">{description}</p>
+      <p className="todo_item_date">{date}</p>
       <input
+        className="todo_item_checkbox"
         type="checkbox"
         checked={currentTodo?.completed ? true : false}
         onChange={(e) => handleCompletion(e)}
