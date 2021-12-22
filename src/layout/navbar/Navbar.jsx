@@ -10,14 +10,12 @@ const Navbar = ({ visibleSidebar, setVisibleSidebar }) => {
   };
   return (
     <div className="nav_parent">
-      {!visibleSidebar && (
-        <>
-          <GiHamburgerMenu size={40} onClick={handleSidebar} />
-          {/* <Link to="/">Home</Link>
+      <div className="nav_hamburger">
+        <GiHamburgerMenu size={40} onClick={handleSidebar} />
+      </div>
+      {/* <Link to="/">Home</Link>
           <Link to="/completed">Completed</Link>
           <Link to="/all">All</Link> */}
-        </>
-      )}
     </div>
   );
 };
