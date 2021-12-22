@@ -5,8 +5,10 @@ import Completed from "./screens/Completed";
 import Home from "./screens/Home";
 // utils
 import "./App.css";
+import "./layout/sidebar/Sidebar.css";
 import Navbar from "./layout/navbar/Navbar";
 import All from "./screens/All";
+import Sidebar from "./layout/sidebar/Sidebar";
 
 const dummyList = [
   {
@@ -40,10 +42,18 @@ const dummyList = [
 ];
 function App() {
   const [defaultList, setDefaultList] = useState(dummyList);
+  const [visibleSidebar, setVisibleSidebar] = useState(false);
 
   return (
     <div className="App">
-      <Navbar />
+      <Sidebar
+        visibleSidebar={visibleSidebar}
+        setVisibleSidebar={setVisibleSidebar}
+      />
+      <Navbar
+        visibleSidebar={visibleSidebar}
+        setVisibleSidebar={setVisibleSidebar}
+      />
       <Routes>
         <Route
           path="/"

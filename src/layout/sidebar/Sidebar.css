@@ -1,0 +1,26 @@
+.sidebar {
+  align-items: flex-start;
+  background-color: lightgray;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: space-evenly;
+  left: 0;
+  position: fixed;
+  transition: 1s;
+  top: 0;
+  width: 75vw;
+}
+.sidebar * {
+  margin-left: 20px;
+}
+.active-sidebar {
+  transform: translateX(0);
+}
+.inactive-sidebar {
+  transform: translateX(-100vh);
+}
+
+.nav_parent {
+  margin-left: 10px;
+}
