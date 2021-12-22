@@ -1,16 +1,15 @@
 .todo_item {
   background-color: #0a155a;
-  border-radius: 5px;
+  border-radius: 15px;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   color: white;
-  display: grid;
-  grid-template-areas:
-    ". title title"
-    "checkbox desc desc"
-    ". labels date";
-  max-width: 70%;
-  padding: 0.5rem 1rem;
-  margin: 1rem auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 55px;
+  max-width: 85%;
+  padding: 0.5rem;
+  margin: 0.25rem auto;
 }
 
 .todo_item_title {
@@ -18,11 +17,31 @@
 }
 .todo_item_desc {
   grid-area: desc;
+  max-height: 100%;
+  margin: auto 10px;
+  overflow: scroll;
+  text-align: left;
+  width: 90%;
 }
 .todo_item_date {
   grid-area: date;
 }
-.todo_item_checkbox {
+
+.todo_item_wrapper {
+  display: flex;
+  align-items: center;
   grid-area: checkbox;
-  margin: auto;
+  height: 100%;
+  margin: auto 5px;
+  width: 10%;
+}
+.todo_item_checkbox {
+  border: 2px solid #d103fc;
+  border-radius: 50%;
+  height: 25px;
+  margin: auto 0;
+  width: 25px;
+}
+.active-checkbox {
+  background-color: #d103fc;
 }

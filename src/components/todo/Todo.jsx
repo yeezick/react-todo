@@ -7,29 +7,32 @@ import "./Todo.css";
 const TodoItem = ({ item, defaultList, setDefaultList }) => {
   const [currentTodo, setCurrentTodo] = useState({});
   const { date, description, id, title } = item;
+
   useEffect(() => {
     const findTodo = defaultList.filter((item) => item.id === id);
     setCurrentTodo(...findTodo);
   }, [defaultList, item]); // why did adding item to this dependency solve so many bugs?
 
-  const handleCompletion = (e) => {
-    const { checked } = e.target;
+  const handleFakeRadio = () => {
     const allTodos = defaultList.filter((item) => item.id !== id);
-    const updatedTodo = { ...currentTodo, completed: checked };
+    const updatedTodo = { ...currentTodo, completed: !currentTodo.completed };
     setDefaultList([...allTodos, updatedTodo]);
   };
 
   return (
-    <div className="todo_item">
-      <p className="todo_item_title">{title}</p>
+    <div className="todo_item" onClick={handleFakeRadio}>
+      <div className="todo_item_checkbox_wrapper'">
+        <div
+          className={
+            currentTodo?.completed
+              ? "todo_item_checkbox active-checkbox"
+              : "todo_item_checkbox"
+          }
+        ></div>
+      </div>
       <p className="todo_item_desc">{description}</p>
-      <p className="todo_item_date">{date}</p>
-      <input
-        className="todo_item_checkbox"
-        type="checkbox"
-        checked={currentTodo?.completed ? true : false}
-        onChange={(e) => handleCompletion(e)}
-      />
+      {/* <p className="todo_item_title">{title}</p> */}
+      {/* <p className="todo_item_date">{date}</p> */}
     </div>
   );
 };
