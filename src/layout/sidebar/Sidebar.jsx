@@ -15,7 +15,7 @@ const Sidebar = ({ visibleSidebar, setVisibleSidebar }) => {
         visibleSidebar ? "sidebar active-sidebar" : "sidebar inactive-sidebar"
       }
     >
-      <IoIosClose size={40} onClick={handleSidebar} />
+      <IoIosClose size={50} onClick={handleSidebar} />
       <div className="sidebar_link_wrapper">
         <div className="sidebar_link">
           <AiOutlineHome size={40} color="white" />
