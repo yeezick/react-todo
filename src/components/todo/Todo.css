@@ -7,6 +7,13 @@
   margin-top: 1rem;
 }
 
+.todo_list_parent {
+  max-height: 60vh;
+  overflow: scroll;
+  overflow-x: hidden;
+  transition: 1s;
+}
+
 .todo_item {
   align-items: center;
   background-color: #0a155a;

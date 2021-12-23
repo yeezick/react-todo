@@ -70,7 +70,6 @@ const TodoItem = ({ item, defaultList, setDefaultList }) => {
           className={`todo_item_edit_input ${
             editTodo ? "active-edit_input" : "inactive-edit_input"
           }`}
-          onAnimationEnd={() => (false ? setEditTodo(true) : null)}
         >
           <textarea value={currentTodo.description} onChange={handleEdit} />
           <button onClick={updateDefaultList}>+</button>
@@ -114,26 +113,26 @@ const TodoList = ({ defaultList, setDefaultList, name }) => {
 
   useEffect(() => {
     switch (name) {
-      case "completed":
+      case "Completed":
         const completedList = defaultList.filter(
           (item) => item.completed === true
         );
         setCurrentList(completedList);
         break;
-      case "incomplete":
+      case "Incomplete":
         const incompleteItems = defaultList.filter(
           (item) => item.completed === false
         );
         setCurrentList(incompleteItems);
         break;
       default:
-      case "all":
+      case "All Todos":
         setCurrentList(defaultList);
         break;
     }
   }, [defaultList, name]);
   return (
-    <>
+    <div className="todo_list_parent">
       {currentList.map((item, idx) => (
         <TodoItem
           key={`todo-${idx}`}
@@ -143,7 +142,7 @@ const TodoList = ({ defaultList, setDefaultList, name }) => {
           defaultList={defaultList}
         />
       ))}
-    </>
+    </div>
   );
 };
 
