@@ -1,9 +1,3 @@
-.todo_list_parent {
-  max-height: 60vh;
-  overflow: scroll;
-  transition: 1s;
-}
-
 .todo_item {
   background-color: #0a155a;
   border-radius: 15px;
