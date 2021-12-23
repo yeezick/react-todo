@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import AddTodo from "./AddTodo";
 
+import { BsThreeDotsVertical } from "react-icons/bs";
 import "./Todo.css";
 
 const TodoItem = ({ item, defaultList, setDefaultList }) => {
@@ -20,8 +21,8 @@ const TodoItem = ({ item, defaultList, setDefaultList }) => {
   };
 
   return (
-    <div className="todo_item" onClick={handleFakeRadio}>
-      <div className="todo_item_checkbox_wrapper'">
+    <div className="todo_item">
+      <div className="todo_item_content" onClick={handleFakeRadio}>
         <div
           className={
             currentTodo?.completed
@@ -29,8 +30,11 @@ const TodoItem = ({ item, defaultList, setDefaultList }) => {
               : "todo_item_checkbox"
           }
         ></div>
+        <p className="todo_item_desc">{description}</p>
       </div>
-      <p className="todo_item_desc">{description}</p>
+      <div className="todo_item_settings_dots">
+        <BsThreeDotsVertical size={20} />
+      </div>
       {/* <p className="todo_item_title">{title}</p> */}
       {/* <p className="todo_item_date">{date}</p> */}
     </div>

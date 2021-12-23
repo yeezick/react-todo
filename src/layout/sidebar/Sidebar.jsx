@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 // utils
-import { GiHamburgerMenu } from "react-icons/gi";
 import { AiOutlineHome } from "react-icons/ai";
 import { BsCheckSquare, BsListTask } from "react-icons/bs";
 import { IoIosClose } from "react-icons/io";
