@@ -1,3 +1,31 @@
+.todo_list_parent {
+  max-height: 60vh;
+  overflow: scroll;
+  overflow-x: hidden;
+  transition: 1s;
+}
+/* article for scrollbar : 
+https://www.w3schools.com/howto/howto_css_custom_scrollbar.asp
+ */
+/* this one is the track */
+.todo_list_parent::-webkit-scrollbar-track {
+  /* color: red; */
+  background-color: orange;
+  width: 1px;
+}
+/* this is the thumb */
+.todo_list_parent::-webkit-scrollbar-thumb {
+  color: #d103fc;
+  background-color: #d103fc;
+  z-index: 13;
+}
+.todo_list_parent::-webkit-scrollbar {
+  border-radius: 4px;
+  color: red;
+  width: 2px;
+  margin-right: 200px;
+}
+
 .todo_item {
   align-items: center;
   background-color: #0a155a;
