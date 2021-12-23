@@ -23,7 +23,6 @@ const AddTodo = ({ setDefaultList }) => {
 
   const handleNewTodo = (e) => {
     e.preventDefault();
-    console.log("desc:", newTodo);
     if (!newTodo.description) {
       setToggleError(true);
       return;

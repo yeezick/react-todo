@@ -47,3 +47,34 @@
   margin: auto 5px;
   width: 10%;
 }
+
+.todo_item_settings_wrapper {
+  position: relative;
+}
+
+.todo_item_settings {
+  border-radius: 4px;
+  color: lightgray;
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  text-align: left;
+  transition: all 0.75s;
+  width: 1px;
+}
+.active-popup {
+  background-color: rgb(70, 70, 70);
+  height: fit-content;
+  transform: translate(-65px, -45px);
+  width: 65px;
+}
+.active-popup p {
+  padding: 3px 5px;
+}
+.active-popup p:first-of-type {
+  border-bottom: 1px solid rgb(154, 154, 154);
+}
+.todo_item_settings p:hover {
+  background-color: rgb(155, 155, 155);
+  color: black;
+}

@@ -7,6 +7,7 @@ import "./Todo.css";
 
 const TodoItem = ({ item, defaultList, setDefaultList }) => {
   const [currentTodo, setCurrentTodo] = useState({});
+  const [settingsPopup, setSettingsPopup] = useState(false);
   const { date, description, id, title } = item;
 
   useEffect(() => {
@@ -18,6 +19,10 @@ const TodoItem = ({ item, defaultList, setDefaultList }) => {
     const allTodos = defaultList.filter((item) => item.id !== id);
     const updatedTodo = { ...currentTodo, completed: !currentTodo.completed };
     setDefaultList([...allTodos, updatedTodo]);
+  };
+
+  const handlePopup = () => {
+    setSettingsPopup(!settingsPopup);
   };
 
   return (
@@ -32,15 +37,45 @@ const TodoItem = ({ item, defaultList, setDefaultList }) => {
         ></div>
         <p className="todo_item_desc">{description}</p>
       </div>
-      <div className="todo_item_settings_dots">
-        <BsThreeDotsVertical size={20} />
+      <div className="todo_item_settings_wrapper">
+        <SettingsPopup
+          settingsPopup={settingsPopup}
+          handlePopup={handlePopup}
+          item={item}
+          setDefaultList={setDefaultList}
+          defaultList={defaultList}
+        />
+        <BsThreeDotsVertical size={20} onClick={handlePopup} />
       </div>
       {/* <p className="todo_item_title">{title}</p> */}
       {/* <p className="todo_item_date">{date}</p> */}
     </div>
   );
 };
-
+const SettingsPopup = ({
+  settingsPopup,
+  handlePopup,
+  item,
+  defaultList,
+  setDefaultList,
+}) => {
+  const handleDelete = () => {
+    const allOtherTodos = defaultList.filter((todo) => todo.id !== item.id);
+    console.log("default", allOtherTodos);
+    setDefaultList(allOtherTodos);
+    handlePopup();
+  };
+  return (
+    <div
+      className={`todo_item_settings ${
+        settingsPopup ? "active-popup" : "inactive-popup"
+      }`}
+    >
+      <p onClick={handleDelete}>Delete</p>
+      <p>Edit</p>
+    </div>
+  );
+};
 // this component is responsible for rendering the appropriate list depending on which list the user is trying to access
 // - should i pass down the label of the list as a prop?
 // start by renaming the parent list to defaultList
