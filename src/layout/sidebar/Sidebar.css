@@ -1,0 +1,59 @@
+.sidebar {
+  align-items: flex-start;
+  background-color: #0a155a;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  left: 0;
+  position: fixed;
+  transition: 1s;
+  top: 0;
+  width: 75vw;
+}
+.sidebar * {
+  color: #bbc2d8;
+}
+.sidebar:first-child {
+  align-items: flex-end;
+  padding: 0.5rem 0.5rem 0;
+}
+
+.sidebar a {
+  /* this is actually the Link component */
+  text-decoration: none;
+  font-size: 25px;
+}
+.active-sidebar {
+  transform: translateX(0);
+}
+.inactive-sidebar {
+  transform: translateX(-100vh);
+}
+
+.sidebar_link_wrapper {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  height: 70%;
+  justify-content: space-evenly;
+  margin: auto 0;
+  width: 100%;
+}
+.sidebar_link_wrapper * {
+  width: 100%;
+  text-align: left;
+}
+
+.sidebar_link {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  color: white;
+  padding: 0.5rem 0;
+}
+.sidebar_link *:first-child {
+  width: 25vw;
+}
+.sidebar_link *:not(:first-child) {
+  width: 5s0vw;
+}

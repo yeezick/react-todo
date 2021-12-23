@@ -5,14 +5,17 @@ import Completed from "./screens/Completed";
 import Home from "./screens/Home";
 // utils
 import "./App.css";
+import "./layout/sidebar/Sidebar.css";
 import Navbar from "./layout/navbar/Navbar";
 import All from "./screens/All";
+import Sidebar from "./layout/sidebar/Sidebar";
 
 const dummyList = [
   {
     completed: false,
     date: "12/20/21",
-    description: "filtering by labels would be a cool post mvp",
+    description:
+      "filtering by labels would be a cool post mvp, im adding more text to this todo so that it can be so long it has to scroll",
     id: `td${Math.random() * 50}`,
     title: "labels",
   },
@@ -40,10 +43,18 @@ const dummyList = [
 ];
 function App() {
   const [defaultList, setDefaultList] = useState(dummyList);
+  const [visibleSidebar, setVisibleSidebar] = useState(false);
 
   return (
     <div className="App">
-      <Navbar />
+      <Sidebar
+        visibleSidebar={visibleSidebar}
+        setVisibleSidebar={setVisibleSidebar}
+      />
+      <Navbar
+        visibleSidebar={visibleSidebar}
+        setVisibleSidebar={setVisibleSidebar}
+      />
       <Routes>
         <Route
           path="/"
