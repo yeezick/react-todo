@@ -5,7 +5,7 @@ const Completed = ({ defaultList, setDefaultList }) => {
   return (
     <div>
       <Todo
-        name="completed"
+        name="Completed"
         defaultList={defaultList}
         setDefaultList={setDefaultList}
       />

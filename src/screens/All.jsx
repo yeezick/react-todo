@@ -4,7 +4,7 @@ const All = ({ defaultList, setDefaultList }) => {
   return (
     <div>
       <Todo
-        name="all"
+        name="All Todos"
         defaultList={defaultList}
         setDefaultList={setDefaultList}
       />

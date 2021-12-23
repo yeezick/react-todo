@@ -18,7 +18,7 @@ const Sidebar = ({ visibleSidebar, setVisibleSidebar }) => {
       <div className="sidebar_link_wrapper">
         <div className="sidebar_link" onClick={handleSidebar}>
           <AiOutlineHome size={40} color="white" />
-          <Link to="/">Home</Link>
+          <Link to="/">Incomplete</Link>
         </div>
 
         <div className="sidebar_link" onClick={handleSidebar}>
@@ -28,7 +28,7 @@ const Sidebar = ({ visibleSidebar, setVisibleSidebar }) => {
 
         <div className="sidebar_link" onClick={handleSidebar}>
           <BsListTask size={40} color="white" />
-          <Link to="/all">All</Link>
+          <Link to="/all">All Todos</Link>
         </div>
       </div>
     </div>

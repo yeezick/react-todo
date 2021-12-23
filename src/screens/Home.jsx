@@ -6,7 +6,7 @@ const Home = ({ defaultList, setDefaultList }) => {
       <Todo
         defaultList={defaultList}
         setDefaultList={setDefaultList}
-        name="incomplete"
+        name="Incomplete"
       />
     </div>
   );

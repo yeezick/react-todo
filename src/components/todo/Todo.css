@@ -1,3 +1,12 @@
+.todo_title {
+  color: white;
+  font-size: 1.5rem;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: underline;
+  margin-top: 1rem;
+}
+
 .todo_item {
   align-items: center;
   background-color: #0a155a;
