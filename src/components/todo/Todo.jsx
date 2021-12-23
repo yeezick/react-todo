@@ -10,8 +10,8 @@ const TodoItem = ({ item, defaultList, setDefaultList }) => {
   const [currentTodo, setCurrentTodo] = useState({});
   const [settingsPopup, setSettingsPopup] = useState(false);
   const [editTodo, setEditTodo] = useState(false);
-  const [editAnimation, toggleEditAnimation] = useState(false);
-  const { date, description, id, title } = item;
+  const { description, id } = item;
+
   useEffect(() => {
     const findTodo = defaultList.filter((item) => item.id === id);
     setCurrentTodo(...findTodo);
@@ -28,7 +28,6 @@ const TodoItem = ({ item, defaultList, setDefaultList }) => {
   };
 
   const handleEdit = (e) => {
-    console.log("input:", e.target.value);
     setCurrentTodo((prevState) => {
       return { ...prevState, description: e.target.value };
     });
@@ -39,7 +38,7 @@ const TodoItem = ({ item, defaultList, setDefaultList }) => {
     setDefaultList([...allOtherTodos, currentTodo]);
     setEditTodo(false);
   };
-  // current
+
   return (
     <div className="todo_item">
       {!editTodo ? (
@@ -108,10 +107,7 @@ const SettingsPopup = ({
     </div>
   );
 };
-// this component is responsible for rendering the appropriate list depending on which list the user is trying to access
-// - should i pass down the label of the list as a prop?
-// start by renaming the parent list to defaultList
-// then use `selectedList` in this component to choose the appropriate list
+
 // how would i handle the user creating their own lists?
 const TodoList = ({ defaultList, setDefaultList, name }) => {
   const [currentList, setCurrentList] = useState([]);

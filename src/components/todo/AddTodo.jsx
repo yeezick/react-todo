@@ -8,7 +8,7 @@ const AddTodo = ({ setDefaultList }) => {
     description: "",
     date: "never",
     completed: false,
-    id: `td${Math.random() * 50}`,
+    id: "",
   });
   const [toggleError, setToggleError] = useState(false);
 
@@ -27,8 +27,9 @@ const AddTodo = ({ setDefaultList }) => {
       setToggleError(true);
       return;
     }
+    const todoWithId = { ...newTodo, id: `td${Math.random() * 50}` };
     setDefaultList((prevState) => {
-      return [...prevState, newTodo];
+      return [...prevState, todoWithId];
     });
     setNewTodo((prevState) => {
       return { ...prevState, description: "" };
