@@ -37,21 +37,6 @@ const TodoItem = ({ item, defaultList, setDefaultList }) => {
   );
 };
 
-const Todo = ({ defaultList, setDefaultList, name }) => {
-  return (
-    <>
-      <TodoList
-        defaultList={defaultList}
-        setDefaultList={setDefaultList}
-        name={name}
-      />
-      <AddTodo setDefaultList={setDefaultList} />
-    </>
-  );
-};
-
-// most likely can consolidate this component to be flexible enough to be used for both lists
-
 // this component is responsible for rendering the appropriate list depending on which list the user is trying to access
 // - should i pass down the label of the list as a prop?
 // start by renaming the parent list to defaultList
@@ -91,6 +76,19 @@ const TodoList = ({ defaultList, setDefaultList, name }) => {
           defaultList={defaultList}
         />
       ))}
+    </>
+  );
+};
+
+const Todo = ({ defaultList, setDefaultList, name }) => {
+  return (
+    <>
+      <TodoList
+        defaultList={defaultList}
+        setDefaultList={setDefaultList}
+        name={name}
+      />
+      <AddTodo setDefaultList={setDefaultList} />
     </>
   );
 };

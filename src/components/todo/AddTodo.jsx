@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { AiOutlineArrowUp } from "react-icons/ai";
+import "./AddTodo.css";
 
 const AddTodo = ({ setDefaultList }) => {
   const [newTodo, setNewTodo] = useState({
@@ -20,9 +22,10 @@ const AddTodo = ({ setDefaultList }) => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleNewTodo}>
+    <div className="addTodo_parent">
+      <form onSubmit={handleNewTodo} className="addTodo_form">
         <input
+          className="addTodo_input"
           type="text"
           placeholder="Add Todo"
           value={newTodo.description}
@@ -32,7 +35,9 @@ const AddTodo = ({ setDefaultList }) => {
             })
           }
         />
-        <button> + </button>
+        <button className="addTodo_button">
+          <AiOutlineArrowUp size={30} />
+        </button>
       </form>
     </div>
   );
