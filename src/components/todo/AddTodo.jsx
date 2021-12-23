@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AiOutlineArrowUp } from "react-icons/ai";
 import "./AddTodo.css";
 
@@ -8,13 +8,28 @@ const AddTodo = ({ setDefaultList }) => {
     description: "",
     date: "never",
     completed: false,
-    id: `td${Math.random() * 50}`,
+    id: "",
   });
+  const [toggleError, setToggleError] = useState(false);
+
+  useEffect(() => {
+    const showError = setTimeout(() => {
+      setToggleError(false);
+    }, 4000);
+    return () => {
+      clearTimeout(showError);
+    };
+  }, [newTodo]);
 
   const handleNewTodo = (e) => {
     e.preventDefault();
+    if (!newTodo.description) {
+      setToggleError(true);
+      return;
+    }
+    const todoWithId = { ...newTodo, id: `td${Math.random() * 50}` };
     setDefaultList((prevState) => {
-      return [...prevState, newTodo];
+      return [...prevState, todoWithId];
     });
     setNewTodo((prevState) => {
       return { ...prevState, description: "" };
@@ -39,6 +54,16 @@ const AddTodo = ({ setDefaultList }) => {
           <AiOutlineArrowUp size={30} />
         </button>
       </form>
+
+      <div
+        className={
+          toggleError
+            ? "addTodo_error active-error"
+            : "addTodo_error inactive-error"
+        }
+      >
+        <p>Cannot add an empty task</p>
+      </div>
     </div>
   );
 };

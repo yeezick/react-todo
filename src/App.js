@@ -14,7 +14,8 @@ const dummyList = [
   {
     completed: false,
     date: "12/20/21",
-    description: "filtering by labels would be a cool post mvp",
+    description:
+      "filtering by labels would be a cool post mvp, im adding more text to this todo so that it can be so long it has to scroll",
     id: `td${Math.random() * 50}`,
     title: "labels",
   },
