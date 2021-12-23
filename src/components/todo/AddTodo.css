@@ -1,0 +1,36 @@
+.addTodo_parent {
+  margin-top: 2rem;
+}
+.addTodo_input {
+  border-radius: 7px;
+  font-size: 20px;
+  height: 40px;
+  margin-right: 15px;
+  padding: 0 10px;
+  width: 70vw;
+}
+
+.addTodo_form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.addTodo_button {
+  background-color: transparent;
+  border-radius: 50%;
+  border: 3px solid #d103fc;
+  color: #d103fc;
+  height: 40px;
+  width: 40px;
+  transition: all 0.25s;
+}
+.addTodo_button:hover {
+  color: lightgray;
+  background-color: #9700b5;
+  border-color: #9600b5;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
+.addTodo_button:active {
+  color: white;
+  transform: scale(0.9);
+}
