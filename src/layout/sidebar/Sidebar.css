@@ -9,9 +9,10 @@
   transition: 1s;
   top: 0;
   width: 75vw;
+  z-index: 10;
 }
 .sidebar * {
-  color: #bbc2d8;
+  color: white;
 }
 .sidebar:first-child {
   align-items: flex-end;

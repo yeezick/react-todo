@@ -1,11 +1,21 @@
 .nav_parent {
   display: flex;
-  height: 50px;
+  height: fit-content;
+  position: relative;
 }
 
 .nav_hamburger {
-  color: #bbc2d8;
+  color: white;
   margin: auto 0;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+.nav_title {
+  color: white;
+  margin: auto;
+}
+.nav_title * {
+  text-shadow: 2px 2px black;
 }

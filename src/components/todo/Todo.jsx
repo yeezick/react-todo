@@ -150,10 +150,6 @@ const Todo = ({ defaultList, setDefaultList, name }) => {
   return (
     <>
       <div className="app_welcome">
-        <h2>
-          Welcome, <br />
-          currently viewing:
-        </h2>
         <p className="todo_title">{name}</p>
       </div>
       <TodoList

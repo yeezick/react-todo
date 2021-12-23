@@ -15,6 +15,10 @@ const Sidebar = ({ visibleSidebar, setVisibleSidebar }) => {
       }
     >
       <IoIosClose size={50} onClick={handleSidebar} />
+      <div className="nav_title">
+        <p>not another</p>
+        <h1>TODO APP</h1>
+      </div>
       <div className="sidebar_link_wrapper">
         <div className="sidebar_link" onClick={handleSidebar}>
           <AiOutlineHome size={40} color="white" />
