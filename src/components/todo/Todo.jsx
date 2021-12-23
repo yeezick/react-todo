@@ -1,4 +1,5 @@
 //! todoItem is rendering twice! look into why this is happening
+//! filtering for all other todos 3x in this component alone, opportunity to DRY up that logic
 import { useState, useEffect } from "react";
 import AddTodo from "./AddTodo";
 
@@ -8,14 +9,15 @@ import "./Todo.css";
 const TodoItem = ({ item, defaultList, setDefaultList }) => {
   const [currentTodo, setCurrentTodo] = useState({});
   const [settingsPopup, setSettingsPopup] = useState(false);
+  const [editTodo, setEditTodo] = useState(false);
+  const [editAnimation, toggleEditAnimation] = useState(false);
   const { date, description, id, title } = item;
-
   useEffect(() => {
     const findTodo = defaultList.filter((item) => item.id === id);
     setCurrentTodo(...findTodo);
   }, [defaultList, item]); // why did adding item to this dependency solve so many bugs?
 
-  const handleFakeRadio = () => {
+  const handleCompletion = () => {
     const allTodos = defaultList.filter((item) => item.id !== id);
     const updatedTodo = { ...currentTodo, completed: !currentTodo.completed };
     setDefaultList([...allTodos, updatedTodo]);
@@ -25,30 +27,56 @@ const TodoItem = ({ item, defaultList, setDefaultList }) => {
     setSettingsPopup(!settingsPopup);
   };
 
+  const handleEdit = (e) => {
+    console.log("input:", e.target.value);
+    setCurrentTodo((prevState) => {
+      return { ...prevState, description: e.target.value };
+    });
+  };
+
+  const updateDefaultList = (e) => {
+    const allOtherTodos = defaultList.filter((item) => item.id !== id);
+    setDefaultList([...allOtherTodos, currentTodo]);
+    setEditTodo(false);
+  };
+  // current
   return (
     <div className="todo_item">
-      <div className="todo_item_content" onClick={handleFakeRadio}>
+      {!editTodo ? (
+        <>
+          <div className="todo_item_content" onClick={handleCompletion}>
+            <div
+              className={
+                currentTodo?.completed
+                  ? "todo_item_checkbox active-checkbox"
+                  : "todo_item_checkbox"
+              }
+            ></div>
+            <p className="todo_item_desc">{description}</p>
+          </div>
+          <div className="todo_item_settings_wrapper">
+            <SettingsPopup
+              settingsPopup={settingsPopup}
+              handlePopup={handlePopup}
+              setEditTodo={setEditTodo}
+              item={item}
+              setDefaultList={setDefaultList}
+              defaultList={defaultList}
+            />
+            <BsThreeDotsVertical size={20} onClick={handlePopup} />
+          </div>
+        </>
+      ) : (
         <div
-          className={
-            currentTodo?.completed
-              ? "todo_item_checkbox active-checkbox"
-              : "todo_item_checkbox"
-          }
-        ></div>
-        <p className="todo_item_desc">{description}</p>
-      </div>
-      <div className="todo_item_settings_wrapper">
-        <SettingsPopup
-          settingsPopup={settingsPopup}
-          handlePopup={handlePopup}
-          item={item}
-          setDefaultList={setDefaultList}
-          defaultList={defaultList}
-        />
-        <BsThreeDotsVertical size={20} onClick={handlePopup} />
-      </div>
-      {/* <p className="todo_item_title">{title}</p> */}
-      {/* <p className="todo_item_date">{date}</p> */}
+          className={`todo_item_edit_input ${
+            editTodo ? "active-edit_input" : "inactive-edit_input"
+          }`}
+          onAnimationEnd={() => (false ? setEditTodo(true) : null)}
+        >
+          <textarea value={currentTodo.description} onChange={handleEdit} />
+          <button onClick={updateDefaultList}>+</button>
+        </div>
+      )}
     </div>
   );
 };
@@ -58,12 +86,16 @@ const SettingsPopup = ({
   item,
   defaultList,
   setDefaultList,
+  setEditTodo,
 }) => {
   const handleDelete = () => {
     const allOtherTodos = defaultList.filter((todo) => todo.id !== item.id);
-    console.log("default", allOtherTodos);
     setDefaultList(allOtherTodos);
     handlePopup();
+  };
+  const closePopupOnEdit = () => {
+    handlePopup();
+    setEditTodo(true);
   };
   return (
     <div
@@ -72,7 +104,7 @@ const SettingsPopup = ({
       }`}
     >
       <p onClick={handleDelete}>Delete</p>
-      <p>Edit</p>
+      <p onClick={closePopupOnEdit}>Edit</p>
     </div>
   );
 };

@@ -9,7 +9,7 @@
   height: fit-content;
   margin: 0.25rem auto;
   max-height: 68px;
-  max-width: 85%;
+  max-width: 85vw;
   padding: 0.5rem;
 }
 .todo_item_content {
@@ -61,6 +61,7 @@
   text-align: left;
   transition: all 0.75s;
   width: 1px;
+  z-index: 10;
 }
 .active-popup {
   background-color: rgb(70, 70, 70);
@@ -77,4 +78,52 @@
 .todo_item_settings p:hover {
   background-color: rgb(155, 155, 155);
   color: black;
+}
+
+.todo_item_edit_input {
+  align-items: center;
+  display: flex;
+  height: 1px;
+  justify-content: center;
+  overflow: hidden;
+  right: 0;
+  transition: all 1s;
+  width: 1px;
+}
+.inactive-edit_input {
+  animation: 0.5s fadeOutTodo;
+  height: 1px;
+  width: 1px;
+}
+.active-edit_input {
+  animation: 0.5s ease-in fadeInTodo;
+  border-radius: 4px;
+  height: fit-content;
+  width: fit-content;
+}
+.active-edit_input textarea,
+.inactive-edit_input textarea {
+  /* padding: 3px; */
+  width: 75vw;
+}
+
+@keyframes fadeInTodo {
+  from {
+    opacity: 0;
+    visibility: hidden;
+  }
+  to {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes fadeOutTodo {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
