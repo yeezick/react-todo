@@ -23,14 +23,14 @@ const TodoItem = ({ item, defaultList, setDefaultList }) => {
     setDefaultList([...allTodos, updatedTodo]);
   };
 
-  const handlePopup = () => {
-    setSettingsPopup(!settingsPopup);
-  };
-
   const handleEdit = (e) => {
     setCurrentTodo((prevState) => {
       return { ...prevState, description: e.target.value };
     });
+  };
+
+  const handlePopup = () => {
+    setSettingsPopup(!settingsPopup);
   };
 
   const updateDefaultList = (e) => {

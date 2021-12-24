@@ -84,6 +84,7 @@
   height: fit-content;
   transform: translate(-65px, -45px);
   width: 65px;
+  z-index: 10;
 }
 .active-popup p {
   padding: 3px 5px;
