@@ -3,12 +3,12 @@
   background-color: #0a155a;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 568px;
   left: 0;
   position: fixed;
   transition: 1s;
   top: 0;
-  width: 75vw;
+  width: 250px;
   z-index: 10;
 }
 .sidebar * {
@@ -28,7 +28,7 @@
   transform: translateX(0);
 }
 .inactive-sidebar {
-  transform: translateX(-100vh);
+  transform: translateX(-100%);
 }
 
 .sidebar_link_wrapper {
@@ -53,8 +53,5 @@
   padding: 0.5rem 0;
 }
 .sidebar_link *:first-child {
-  width: 25vw;
-}
-.sidebar_link *:not(:first-child) {
-  width: 5s0vw;
+  width: 50px;
 }

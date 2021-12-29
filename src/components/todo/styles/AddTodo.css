@@ -8,7 +8,7 @@
   height: 40px;
   margin-right: 15px;
   padding: 0 10px;
-  width: 70vw;
+  width: 224px;
 }
 
 .addTodo_form {
@@ -52,5 +52,5 @@
   transform: translateX(0);
 }
 .inactive-error {
-  transform: translateX(100vw);
+  transform: translateX(130%);
 }

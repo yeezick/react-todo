@@ -8,7 +8,7 @@
 }
 
 .todo_list_parent {
-  max-height: 60vh;
+  max-height: 340px;
   overflow: scroll;
   overflow-x: hidden;
   transition: 1s;
@@ -25,7 +25,7 @@
   height: fit-content;
   margin: 0.25rem auto;
   max-height: 68px;
-  max-width: 85vw;
+  max-width: 272px;
   padding: 0.5rem;
 }
 .todo_item_content {
@@ -121,7 +121,7 @@
 .active-edit_input textarea,
 .inactive-edit_input textarea {
   /* padding: 3px; */
-  width: 75vw;
+  width: 244px;
 }
 
 @keyframes fadeInTodo {

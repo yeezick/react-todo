@@ -1,12 +1,12 @@
 .App {
   text-align: center;
   height: 568px;
-  margin: 1rem auto;
+  margin: auto;
   overflow: hidden;
   width: 320px;
 }
 .app_welcome {
   color: white;
-  margin: 1rem 5vh;
+  margin: 1rem auto;
   text-align: left;
 }
