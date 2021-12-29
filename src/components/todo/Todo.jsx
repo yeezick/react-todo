@@ -1,9 +1,10 @@
 //! todoItem is rendering twice! look into why this is happening
 //! filtering for all other todos 3x in this component alone, opportunity to DRY up that logic
-import { useState, useEffect } from "react";
-import AddTodo from "./AddTodo";
 
-import { BsThreeDotsVertical } from "react-icons/bs";
+import { useState, useEffect } from "react";
+import AddTodo from "./blocks/AddTodo";
+import TodoItemContent from "./blocks/TodoItemContent";
+
 import "./Todo.css";
 
 const TodoItem = ({ item, defaultList, setDefaultList }) => {
@@ -33,7 +34,7 @@ const TodoItem = ({ item, defaultList, setDefaultList }) => {
     setSettingsPopup(!settingsPopup);
   };
 
-  const updateDefaultList = (e) => {
+  const updateDefaultList = () => {
     const allOtherTodos = defaultList.filter((item) => item.id !== id);
     setDefaultList([...allOtherTodos, currentTodo]);
     setEditTodo(false);
@@ -42,29 +43,17 @@ const TodoItem = ({ item, defaultList, setDefaultList }) => {
   return (
     <div className="todo_item">
       {!editTodo ? (
-        <>
-          <div className="todo_item_content" onClick={handleCompletion}>
-            <div
-              className={
-                currentTodo?.completed
-                  ? "todo_item_checkbox active-checkbox"
-                  : "todo_item_checkbox"
-              }
-            ></div>
-            <p className="todo_item_desc">{description}</p>
-          </div>
-          <div className="todo_item_settings_wrapper">
-            <SettingsPopup
-              settingsPopup={settingsPopup}
-              handlePopup={handlePopup}
-              setEditTodo={setEditTodo}
-              item={item}
-              setDefaultList={setDefaultList}
-              defaultList={defaultList}
-            />
-            <BsThreeDotsVertical size={20} onClick={handlePopup} />
-          </div>
-        </>
+        <TodoItemContent
+          description={description}
+          handleCompletion={handleCompletion}
+          defaultList={defaultList}
+          handlePopup={handlePopup}
+          item={item}
+          setDefaultList={setDefaultList}
+          setEditTodo={setEditTodo}
+          settingsPopup={settingsPopup}
+          currentTodo={currentTodo}
+        />
       ) : (
         <div
           className={`todo_item_edit_input ${
@@ -78,37 +67,9 @@ const TodoItem = ({ item, defaultList, setDefaultList }) => {
     </div>
   );
 };
-const SettingsPopup = ({
-  settingsPopup,
-  handlePopup,
-  item,
-  defaultList,
-  setDefaultList,
-  setEditTodo,
-}) => {
-  const handleDelete = () => {
-    const allOtherTodos = defaultList.filter((todo) => todo.id !== item.id);
-    setDefaultList(allOtherTodos);
-    handlePopup();
-  };
-  const closePopupOnEdit = () => {
-    handlePopup();
-    setEditTodo(true);
-  };
-  return (
-    <div
-      className={`todo_item_settings ${
-        settingsPopup ? "active-popup" : "inactive-popup"
-      }`}
-    >
-      <p onClick={handleDelete}>Delete</p>
-      <p onClick={closePopupOnEdit}>Edit</p>
-    </div>
-  );
-};
 
 // how would i handle the user creating their own lists?
-const TodoList = ({ defaultList, setDefaultList, name }) => {
+const TodoList = ({ defaultList, name, setDefaultList }) => {
   const [currentList, setCurrentList] = useState([]);
 
   useEffect(() => {

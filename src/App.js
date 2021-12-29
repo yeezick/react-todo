@@ -28,8 +28,8 @@ const dummyList = [
   },
   {
     completed: false,
-    description: "git better",
     date: "today",
+    description: "git better",
     id: `td${Math.random() * 50}`,
     title: "coding",
   },

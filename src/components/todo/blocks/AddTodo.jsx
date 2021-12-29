@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { AiOutlineArrowUp } from "react-icons/ai";
-import "./AddTodo.css";
+import "../styles/AddTodo.css";
 
 const AddTodo = ({ setDefaultList }) => {
   const [newTodo, setNewTodo] = useState({
@@ -23,14 +23,17 @@ const AddTodo = ({ setDefaultList }) => {
 
   const handleNewTodo = (e) => {
     e.preventDefault();
+
     if (!newTodo.description) {
       setToggleError(true);
       return;
     }
+
     const todoWithId = { ...newTodo, id: `td${Math.random() * 50}` };
     setDefaultList((prevState) => {
       return [...prevState, todoWithId];
     });
+
     setNewTodo((prevState) => {
       return { ...prevState, description: "" };
     });
