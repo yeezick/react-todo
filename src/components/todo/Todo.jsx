@@ -131,10 +131,10 @@ const Filter = ({ setName }) => {
     setName(e.target.textContent);
   };
   return (
-    <>
+    <div className="todo_filter">
       <button onClick={handleName}>All</button>
       <button onClick={handleName}>Completed</button>
       <button onClick={handleName}>Incomplete</button>
-    </>
+    </div>
   );
 };

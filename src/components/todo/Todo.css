@@ -111,3 +111,18 @@
     visibility: hidden;
   }
 }
+
+.todo_filter {
+  align-content: center;
+  display: flex;
+  justify-content: space-around;
+}
+.todo_filter button {
+  background-color: #0a155a;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 18px;
+  height: 30px;
+  width: 30%;
+}
