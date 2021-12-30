@@ -3,6 +3,7 @@ import { useState } from "react";
 // components
 import Completed from "./screens/Completed";
 import Home from "./screens/Home";
+import Todo from "./components/todo/Todo";
 // utils
 import "./App.css";
 import "./layout/sidebar/Sidebar.css";
@@ -55,6 +56,14 @@ function App() {
         visibleSidebar={visibleSidebar}
         setVisibleSidebar={setVisibleSidebar}
       />
+
+      <div>
+        <Todo
+          defaultList={defaultList}
+          setDefaultList={setDefaultList}
+          name="Incomplete"
+        />
+      </div>
 
       <Routes>
         <Route
