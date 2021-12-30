@@ -1,15 +1,11 @@
-import { Route, Routes } from "react-router-dom";
 import { useState } from "react";
 // components
-import Completed from "./screens/Completed";
-import Home from "./screens/Home";
+import Navbar from "./layout/navbar/Navbar";
+import Sidebar from "./layout/sidebar/Sidebar";
 import Todo from "./components/todo/Todo";
 // utils
 import "./App.css";
 import "./layout/sidebar/Sidebar.css";
-import Navbar from "./layout/navbar/Navbar";
-import All from "./screens/All";
-import Sidebar from "./layout/sidebar/Sidebar";
 
 const dummyList = [
   {
@@ -64,30 +60,6 @@ function App() {
           name="Incomplete"
         />
       </div>
-
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Home defaultList={defaultList} setDefaultList={setDefaultList} />
-          }
-        />
-        <Route
-          path="/all"
-          element={
-            <All defaultList={defaultList} setDefaultList={setDefaultList} />
-          }
-        />
-        <Route
-          path="/completed"
-          element={
-            <Completed
-              defaultList={defaultList}
-              setDefaultList={setDefaultList}
-            />
-          }
-        />
-      </Routes>
     </div>
   );
 }
