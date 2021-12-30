@@ -1,4 +1,3 @@
-import { SettingsPopup } from "./SettingsPopup";
 import { BsTrashFill } from "react-icons/bs";
 
 const TodoItemContent = ({
