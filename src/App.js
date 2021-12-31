@@ -47,6 +47,7 @@ function App() {
       new Date(a.date) < new Date(b.date) ? 1 : -1
     );
     setDefaultList(sortedList);
+    localStorage.setItem("defaultList", JSON.stringify(sortedList));
   });
 
   return (

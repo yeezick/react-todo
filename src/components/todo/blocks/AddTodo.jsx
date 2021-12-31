@@ -41,7 +41,7 @@ const AddTodo = ({ defaultList, setDefaultList }) => {
     );
 
     setDefaultList(updatedList);
-
+    localStorage.setItem("defaultList", JSON.stringify(updatedList));
     setNewTodo((prevState) => {
       return { ...prevState, description: "" };
     });

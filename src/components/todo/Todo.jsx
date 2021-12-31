@@ -109,6 +109,9 @@ const TodoList = ({ defaultList, name, setDefaultList }) => {
 
 const Todo = ({ defaultList, setDefaultList }) => {
   const [name, setName] = useState("All");
+
+  const myList = JSON.parse(localStorage.getItem("defaultList"));
+  console.log("myList:", myList);
   return (
     <>
       <div className="app_welcome">
@@ -116,11 +119,11 @@ const Todo = ({ defaultList, setDefaultList }) => {
         <p className="todo_title">{name}</p>
       </div>
       <TodoList
-        defaultList={defaultList}
+        defaultList={myList}
         setDefaultList={setDefaultList}
         name={name}
       />
-      <AddTodo setDefaultList={setDefaultList} defaultList={defaultList} />
+      <AddTodo setDefaultList={setDefaultList} defaultList={myList} />
     </>
   );
 };
