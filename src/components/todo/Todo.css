@@ -8,7 +8,7 @@
 }
 
 .todo_list_parent {
-  max-height: 340px;
+  max-height: 300px;
   overflow: scroll;
   overflow-x: hidden;
   transition: 1s;

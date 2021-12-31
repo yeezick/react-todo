@@ -120,7 +120,7 @@ const Todo = ({ defaultList, setDefaultList }) => {
         setDefaultList={setDefaultList}
         name={name}
       />
-      <AddTodo setDefaultList={setDefaultList} />
+      <AddTodo setDefaultList={setDefaultList} defaultList={defaultList} />
     </>
   );
 };
