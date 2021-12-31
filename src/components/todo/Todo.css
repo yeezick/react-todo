@@ -8,7 +8,7 @@
 }
 
 .todo_list_parent {
-  max-height: 340px;
+  max-height: 300px;
   overflow: scroll;
   overflow-x: hidden;
   transition: 1s;
@@ -64,39 +64,6 @@
   width: 10%;
 }
 
-.todo_item_settings_wrapper {
-  position: relative;
-}
-
-.todo_item_settings {
-  border-radius: 4px;
-  color: lightgray;
-  height: 1px;
-  overflow: hidden;
-  position: absolute;
-  text-align: left;
-  transition: all 0.75s;
-  width: 1px;
-  z-index: 10;
-}
-.active-popup {
-  background-color: rgb(70, 70, 70);
-  height: fit-content;
-  transform: translate(-65px, -45px);
-  width: 65px;
-  z-index: 10;
-}
-.active-popup p {
-  padding: 3px 5px;
-}
-.active-popup p:first-of-type {
-  border-bottom: 1px solid rgb(154, 154, 154);
-}
-.todo_item_settings p:hover {
-  background-color: rgb(155, 155, 155);
-  color: black;
-}
-
 .todo_item_edit_input {
   align-items: center;
   display: flex;
@@ -143,4 +110,19 @@
     opacity: 0;
     visibility: hidden;
   }
+}
+
+.todo_filter {
+  align-content: center;
+  display: flex;
+  justify-content: space-around;
+}
+.todo_filter button {
+  background-color: #0a155a;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 18px;
+  height: 30px;
+  width: 30%;
 }

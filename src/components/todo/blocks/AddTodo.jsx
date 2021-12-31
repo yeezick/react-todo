@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import { AiOutlineArrowUp } from "react-icons/ai";
 import "../styles/AddTodo.css";
 
-const AddTodo = ({ setDefaultList }) => {
+const AddTodo = ({ defaultList, setDefaultList }) => {
   const [newTodo, setNewTodo] = useState({
     title: "finish AddTodo",
     description: "",
-    date: "never",
+    date: "",
     completed: false,
     id: "",
   });
@@ -29,10 +29,18 @@ const AddTodo = ({ setDefaultList }) => {
       return;
     }
 
-    const todoWithId = { ...newTodo, id: `td${Math.random() * 50}` };
-    setDefaultList((prevState) => {
-      return [...prevState, todoWithId];
-    });
+    const finalTodo = {
+      ...newTodo,
+      id: `td${Math.random() * 50}`,
+      date: new Date(),
+    };
+
+    let updatedList = [...defaultList, finalTodo];
+    updatedList = updatedList.sort((a, b) =>
+      new Date(a.date) < new Date(b, a) ? 1 : -1
+    );
+
+    setDefaultList(updatedList);
 
     setNewTodo((prevState) => {
       return { ...prevState, description: "" };

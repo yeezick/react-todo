@@ -107,10 +107,12 @@ const TodoList = ({ defaultList, name, setDefaultList }) => {
   );
 };
 
-const Todo = ({ defaultList, setDefaultList, name }) => {
+const Todo = ({ defaultList, setDefaultList }) => {
+  const [name, setName] = useState("All");
   return (
     <>
       <div className="app_welcome">
+        <Filter setName={setName} />
         <p className="todo_title">{name}</p>
       </div>
       <TodoList
@@ -118,8 +120,21 @@ const Todo = ({ defaultList, setDefaultList, name }) => {
         setDefaultList={setDefaultList}
         name={name}
       />
-      <AddTodo setDefaultList={setDefaultList} />
+      <AddTodo setDefaultList={setDefaultList} defaultList={defaultList} />
     </>
   );
 };
 export default Todo;
+
+const Filter = ({ setName }) => {
+  const handleName = (e) => {
+    setName(e.target.textContent);
+  };
+  return (
+    <div className="todo_filter">
+      <button onClick={handleName}>All</button>
+      <button onClick={handleName}>Completed</button>
+      <button onClick={handleName}>Incomplete</button>
+    </div>
+  );
+};
