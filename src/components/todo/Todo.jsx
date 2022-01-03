@@ -2,129 +2,77 @@
 //! filtering for all other todos 3x in this component alone, opportunity to DRY up that logic
 
 import { useState, useEffect } from "react";
-import AddTodo from "./blocks/AddTodo";
-import TodoItemContent from "./blocks/TodoItemContent";
+import { AddTodo } from "./blocks/AddTodo";
+import { TodoList } from "./blocks/TodoList";
 
 import "./Todo.css";
 
-const TodoItem = ({ item, defaultList, setDefaultList }) => {
-  const [currentTodo, setCurrentTodo] = useState({});
-  const [settingsPopup, setSettingsPopup] = useState(false);
-  const [editTodo, setEditTodo] = useState(false);
-  const { description, id } = item;
+const dummyList = [
+  {
+    completed: false,
+    date: new Date("2021-12-24"),
+    description:
+      "filtering by labels would be a cool post mvp, im adding more text to this todo so that it can be so long it has to scroll",
+    id: `td${Math.random() * 50}`,
+    title: "labels",
+  },
+  {
+    completed: true,
+    date: new Date("2021-11-28"),
+    description: "take out the trash",
+    id: `td${Math.random() * 50}`,
+    title: "chores",
+  },
+  {
+    completed: false,
+    date: new Date("2021-11-29"),
+    description: "git better",
+    id: `td${Math.random() * 50}`,
+    title: "coding",
+  },
+  {
+    completed: false,
+    date: new Date("2021-10-24"),
+    description: "finishTodo",
+    id: `td${Math.random() * 50}`,
+    title: "addTodo",
+  },
+];
 
-  useEffect(() => {
-    const findTodo = defaultList.filter((item) => item.id === id);
-    setCurrentTodo(...findTodo);
-  }, [defaultList, item]); // why did adding item to this dependency solve so many bugs?
-
-  const handleCompletion = () => {
-    const allTodos = defaultList.filter((item) => item.id !== id);
-    const updatedTodo = { ...currentTodo, completed: !currentTodo.completed };
-    setDefaultList([...allTodos, updatedTodo]);
-  };
-
-  const handleEdit = (e) => {
-    setCurrentTodo((prevState) => {
-      return { ...prevState, description: e.target.value };
-    });
-  };
-
-  const handlePopup = () => {
-    setSettingsPopup(!settingsPopup);
-  };
-
-  const updateDefaultList = () => {
-    const allOtherTodos = defaultList.filter((item) => item.id !== id);
-    setDefaultList([...allOtherTodos, currentTodo]);
-    setEditTodo(false);
-  };
-
-  return (
-    <div className="todo_item">
-      {!editTodo ? (
-        <TodoItemContent
-          description={description}
-          handleCompletion={handleCompletion}
-          defaultList={defaultList}
-          handlePopup={handlePopup}
-          item={item}
-          setDefaultList={setDefaultList}
-          setEditTodo={setEditTodo}
-          settingsPopup={settingsPopup}
-          currentTodo={currentTodo}
-        />
-      ) : (
-        <div
-          className={`todo_item_edit_input ${
-            editTodo ? "active-edit_input" : "inactive-edit_input"
-          }`}
-        >
-          <textarea value={currentTodo.description} onChange={handleEdit} />
-          <button onClick={updateDefaultList}>+</button>
-        </div>
-      )}
-    </div>
-  );
-};
-
-// how would i handle the user creating their own lists?
-const TodoList = ({ defaultList, name, setDefaultList }) => {
-  const [currentList, setCurrentList] = useState([]);
-
-  useEffect(() => {
-    switch (name) {
-      case "Completed":
-        const completedList = defaultList.filter(
-          (item) => item.completed === true
-        );
-        setCurrentList(completedList);
-        break;
-      case "Incomplete":
-        const incompleteItems = defaultList.filter(
-          (item) => item.completed === false
-        );
-        setCurrentList(incompleteItems);
-        break;
-      default:
-      case "All Todos":
-        setCurrentList(defaultList);
-        break;
-    }
-  }, [defaultList, name]);
-  return (
-    <div className="todo_list_parent">
-      {currentList.map((item, idx) => (
-        <TodoItem
-          key={`todo-${idx}`}
-          currentList={currentList}
-          item={item}
-          setDefaultList={setDefaultList}
-          defaultList={defaultList}
-        />
-      ))}
-    </div>
-  );
-};
-
-const Todo = ({ defaultList, setDefaultList }) => {
+export const Todo = () => {
   const [name, setName] = useState("All");
+  const [refresh, toggleRefresh] = useState(false);
+  const [defaultList, setDefaultList] = useState([]);
+
+  useEffect(() => {
+    if (!localStorage.getItem("defaultList")) {
+      localStorage.setItem("defaultList", JSON.stringify(dummyList));
+      setDefaultList(dummyList);
+    } else {
+      setDefaultList(JSON.parse(localStorage.getItem("defaultList")));
+    }
+  }, [refresh]);
+
   return (
     <>
       <div className="app_welcome">
         <Filter setName={setName} />
         <p className="todo_title">{name}</p>
       </div>
-      <TodoList
+      <AddTodo
         defaultList={defaultList}
         setDefaultList={setDefaultList}
+        toggleRefresh={toggleRefresh}
+      />
+      <TodoList
+        defaultList={defaultList}
+        toggleRefresh={toggleRefresh}
+        refresh={refresh}
         name={name}
       />
-      <AddTodo setDefaultList={setDefaultList} defaultList={defaultList} />
     </>
   );
 };
-export default Todo;
 
 const Filter = ({ setName }) => {
   const handleName = (e) => {

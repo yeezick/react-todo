@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import "./Navbar.css";
 
-const Navbar = ({ visibleSidebar, setVisibleSidebar }) => {
+export const Navbar = ({ visibleSidebar, setVisibleSidebar }) => {
   const handleSidebar = () => {
     setVisibleSidebar((prevState) => !prevState);
   };
@@ -23,5 +23,3 @@ const Navbar = ({ visibleSidebar, setVisibleSidebar }) => {
     </div>
   );
 };
-
-export default Navbar;
