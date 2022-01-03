@@ -4,7 +4,7 @@ import { AiOutlineHome } from "react-icons/ai";
 import { BsCheckSquare, BsListTask } from "react-icons/bs";
 import { IoIosClose } from "react-icons/io";
 
-const Sidebar = ({ visibleSidebar, setVisibleSidebar }) => {
+export const Sidebar = ({ visibleSidebar, setVisibleSidebar }) => {
   const handleSidebar = () => {
     setVisibleSidebar((prevState) => !prevState);
   };
@@ -38,4 +38,3 @@ const Sidebar = ({ visibleSidebar, setVisibleSidebar }) => {
     </div>
   );
 };
-export default Sidebar;

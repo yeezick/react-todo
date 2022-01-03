@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 // components
-import Navbar from "./layout/navbar/Navbar";
-import Sidebar from "./layout/sidebar/Sidebar";
-import Todo from "./components/todo/Todo";
+import { Navbar } from "./layout/navbar/Navbar";
+import { Sidebar } from "./layout/sidebar/Sidebar";
+import { Todo } from "./components/todo/Todo.jsx";
 // utils
 import "./App.css";
 import "./layout/sidebar/Sidebar.css";
@@ -20,7 +20,6 @@ function App() {
         visibleSidebar={visibleSidebar}
         setVisibleSidebar={setVisibleSidebar}
       />
-
       <div>
         <Todo />
       </div>

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { AiOutlineArrowUp } from "react-icons/ai";
 import "../styles/AddTodo.css";
 
-const AddTodo = ({ defaultList, setDefaultList, toggleRefresh }) => {
+export const AddTodo = ({ defaultList, setDefaultList, toggleRefresh }) => {
   const [newTodo, setNewTodo] = useState({
     title: "finish AddTodo",
     description: "",
@@ -78,5 +78,3 @@ const AddTodo = ({ defaultList, setDefaultList, toggleRefresh }) => {
     </div>
   );
 };
-
-export default AddTodo;

@@ -1,20 +1,19 @@
 import { BsTrashFill } from "react-icons/bs";
 
-const TodoItemContent = ({
+export const TodoItemContent = ({
   handleCompletion,
   defaultList,
-  description,
-  item,
-  setDefaultList,
   setEditTodo,
   currentTodo,
   toggleRefresh,
 }) => {
+  const { description, id } = currentTodo;
   const handleDelete = () => {
-    const allOtherTodos = defaultList.filter((todo) => todo.id !== item.id);
+    const allOtherTodos = defaultList.filter((todo) => todo.id !== id);
     localStorage.setItem("defaultList", JSON.stringify(allOtherTodos));
     toggleRefresh((state) => !state);
   };
+
   return (
     <>
       <div className="todo_item_content">
@@ -36,5 +35,3 @@ const TodoItemContent = ({
     </>
   );
 };
-
-export default TodoItemContent;
