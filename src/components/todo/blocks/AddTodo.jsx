@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { AiOutlineArrowUp } from "react-icons/ai";
 import "../styles/AddTodo.css";
 
-const AddTodo = ({ defaultList, setDefaultList }) => {
+const AddTodo = ({ defaultList, setDefaultList, toggleRefresh }) => {
   const [newTodo, setNewTodo] = useState({
     title: "finish AddTodo",
     description: "",
@@ -35,16 +35,16 @@ const AddTodo = ({ defaultList, setDefaultList }) => {
       date: new Date(),
     };
 
-    let updatedList = [...defaultList, finalTodo];
+    let updatedList = [finalTodo, ...defaultList];
     updatedList = updatedList.sort((a, b) =>
       new Date(a.date) < new Date(b, a) ? 1 : -1
     );
 
-    setDefaultList(updatedList);
     localStorage.setItem("defaultList", JSON.stringify(updatedList));
     setNewTodo((prevState) => {
       return { ...prevState, description: "" };
     });
+    toggleRefresh((state) => !state);
   };
 
   return (

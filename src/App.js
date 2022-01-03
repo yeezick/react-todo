@@ -42,6 +42,7 @@ const dummyList = [
 function App() {
   const [defaultList, setDefaultList] = useState(dummyList);
   const [visibleSidebar, setVisibleSidebar] = useState(false);
+
   useEffect(() => {
     const sortedList = defaultList.sort((a, b) =>
       new Date(a.date) < new Date(b.date) ? 1 : -1

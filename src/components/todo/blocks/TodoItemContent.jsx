@@ -8,10 +8,12 @@ const TodoItemContent = ({
   setDefaultList,
   setEditTodo,
   currentTodo,
+  toggleRefresh,
 }) => {
   const handleDelete = () => {
     const allOtherTodos = defaultList.filter((todo) => todo.id !== item.id);
-    setDefaultList(allOtherTodos);
+    localStorage.setItem("defaultList", JSON.stringify(allOtherTodos));
+    toggleRefresh((state) => !state);
   };
   return (
     <>
