@@ -7,6 +7,38 @@ import TodoItemContent from "./blocks/TodoItemContent";
 
 import "./Todo.css";
 
+const dummyList = [
+  {
+    completed: false,
+    date: new Date("2021-12-24"),
+    description:
+      "filtering by labels would be a cool post mvp, im adding more text to this todo so that it can be so long it has to scroll",
+    id: `td${Math.random() * 50}`,
+    title: "labels",
+  },
+  {
+    completed: true,
+    date: new Date("2021-11-28"),
+    description: "take out the trash",
+    id: `td${Math.random() * 50}`,
+    title: "chores",
+  },
+  {
+    completed: false,
+    date: new Date("2021-11-29"),
+    description: "git better",
+    id: `td${Math.random() * 50}`,
+    title: "coding",
+  },
+  {
+    completed: false,
+    date: new Date("2021-10-24"),
+    description: "finishTodo",
+    id: `td${Math.random() * 50}`,
+    title: "addTodo",
+  },
+];
+
 const sortList = (list) => {
   const sortedList = list.sort((a, b) =>
     new Date(a.date) < new Date(b.date) ? 1 : -1
@@ -128,7 +160,12 @@ const Todo = () => {
   const [defaultList, setDefaultList] = useState([]);
 
   useEffect(() => {
-    setDefaultList(JSON.parse(localStorage.getItem("defaultList")));
+    if (!localStorage.getItem("defaultList")) {
+      localStorage.setItem("defaultList", JSON.stringify(dummyList));
+      setDefaultList(dummyList);
+    } else {
+      setDefaultList(JSON.parse(localStorage.getItem("defaultList")));
+    }
   }, [refresh]);
 
   return (
